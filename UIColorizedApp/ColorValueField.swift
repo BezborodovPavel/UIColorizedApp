@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-protocol Focused {
-    var focused: Bool { get set }
-}
-
 struct ColorValueField: View {
     @Binding var colorValue: Double
     @Binding var textValue: String

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var redColor = Double.random(in: 1...255)
-    @State var greenColor = Double.random(in: 1...255)
-    @State var blueColor = Double.random(in: 1...255)
+    @State private var redColor = Double.random(in: 1...255)
+    @State private var greenColor = Double.random(in: 1...255)
+    @State private var blueColor = Double.random(in: 1...255)
     
     var body: some View {
         
@@ -24,17 +24,11 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
-struct lineOfSettings: View, Focused {
+struct lineOfSettings: View, Focused{
     
     @FocusState var focused
     @Binding var color: Double
-    @State var textValueColor = ""
+    @State private var textValueColor = ""
     let baseColor: UIColor
     
     var body: some View {
@@ -50,13 +44,12 @@ struct lineOfSettings: View, Focused {
     }
 }
 
-extension ContentView {
-    private func validate(inputValue: String, succes: () -> Void, fail: () -> Void) {
-        guard let DoubleValue = Double(inputValue) else {return}
-        if !(1...255).contains(DoubleValue) {
-            succes()
-        } else {
-            fail()
-        }
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
+}
+
+protocol Focused {
+    var focused: Bool { get set }
 }
